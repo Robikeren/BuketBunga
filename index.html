@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BROWNY.GIFT — Buket Bunga & Hadiah Unik</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff4d8d;
+      --primary-dark: #e63d7a;
+      --secondary: #2c3e50;
+      --light: #f8f9fa;
+      --gradient: linear-gradient(135deg, #ff4d8d 0%, #ff6fa3 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--secondary);
+      overflow-x: hidden;
+      background: #ffffff;
+    }
+    
+    /* Navbar Modern */
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95) !important;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .navbar.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .nav-link {
+      color: var(--secondary) !important;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem !important;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: var(--primary) !important;
+      transform: translateY(-2px);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 60%;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: var(--gradient);
+      opacity: 0.05;
+      border-radius: 50%;
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+    
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease;
+    }
+    
+    .hero p.lead {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: #6c757d;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .btn-modern {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary-modern {
+      background: var(--gradient);
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 77, 141, 0.3);
+    }
+    
+    .btn-primary-modern:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 77, 141, 0.4);
+    }
+    
+    .btn-outline-modern {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    
+    .btn-outline-modern:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 77, 141, 0.3);
+    }
+    
+    .hero-image {
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      transition: transform 0.5s ease;
+      animation: fadeIn 1s ease 0.4s both;
+      max-height: 500px;
+      object-fit: cover;
+    }
+    
+    .hero-image:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Feature Cards */
+    .feature-card {
+      padding: 2rem;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover .feature-icon {
+      transform: rotateY(360deg);
+    }
+    
+    /* Product Cards */
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      border: none;
+      height: 100%;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+    
+    .product-card img {
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .product-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .product-card .card-body {
+      padding: 1.5rem;
+    }
+    
+    .price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* Testimonial */
+    .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .testimonial-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    }
+    
+    /* Promo Box */
+    .promo-box {
+      background: linear-gradient(135deg, #fff 0%, #fff5f8 100%);
+      border-radius: 25px;
+      padding: 3rem;
+      border: 2px dashed var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .promo-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: var(--gradient);
+      opacity: 0.05;
+      border-radius: 50%;
+    }
+    
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .countdown-item {
+      text-align: center;
+      padding: 1rem 1.5rem;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      min-width: 80px;
+    }
+    
+    .countdown-number {
+      font-size: 2rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+    
+    .countdown-label {
+      font-size: 0.75rem;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-header h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    
+    .section-header .subtitle {
+      color: #6c757d;
+      font-size: 1.1rem;
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--secondary);
+      color: white;
+      padding: 3rem 0 1rem;
+      margin-top: 5rem;
+    }
+    
+    footer a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    footer a:hover {
+      color: var(--primary);
+    }
+    
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 80px;
+        min-height: auto;
+        padding-bottom: 3rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .btn-modern {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+      }
+      
+      .feature-card {
+        padding: 1.5rem;
+      }
+      
+      .product-card img {
+        height: 200px;
+      }
+      
+      .promo-box {
+        padding: 2rem 1.5rem;
+      }
+      
+      .countdown-item {
+        min-width: 70px;
+        padding: 0.75rem 1rem;
+      }
+      
+      .countdown-number {
+        font-size: 1.5rem;
+      }
+      
+      section {
+        padding: 3rem 0 !important;
+      }
+    }
+    
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Floating WhatsApp Button */
+    .wa-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+      text-decoration: none;
+      color: white;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* Loading Animation */
+    .img-loading {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+    
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/628125913319?text=Halo%20BROWNY.GIFT%2C%20saya%20ingin%20bertanya" target="_blank" class="wa-float">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">BROWNY.GIFT</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#produk">Katalog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why">Kenapa Kami</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimoni">Testimoni</a></li>
+          <li class="nav-item"><a class="nav-link" href="#promo">Promo</a></li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-primary-modern btn-modern" href="#cara-order">Order Sekarang</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <h1>Hadiah Spesial<br>untuk Momen<br><span style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Istimewa</span></h1>
+          <p class="lead">Buket bunga, snack, dan hadiah unik yang handmade dengan cinta untuk setiap momen berharga Anda</p>
+          <div class="d-flex gap-3 mb-4 flex-wrap">
+            <a href="#produk" class="btn btn-primary-modern btn-modern">
+              Lihat Katalog
+            </a>
+            <a href="https://wa.me/628125913319?text=Saya%20ingin%20memesan%20BROWNY.GIFT" target="_blank" class="btn btn-outline-modern btn-modern">
+              <i class="bi bi-whatsapp me-2"></i>WhatsApp
+            </a>
+          </div>
+          <div class="row g-3 mt-4">
+            <div class="col-6 col-md-4">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-heart-fill" style="color: var(--primary); font-size: 1.5rem;"></i>
+                <small class="fw-semibold">Handmade</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-brush-fill" style="color: var(--primary); font-size: 1.5rem;"></i>
+                <small class="fw-semibold">Custom Design</small>
+              </div>
+            </div>
+            <div class="col-6 col-md-4">
+              <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-lightning-fill" style="color: var(--primary); font-size: 1.5rem;"></i>
+                <small class="fw-semibold">Fast Delivery</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img src="1.jpg" alt="Buket Bunga BROWNY.GIFT" class="img-fluid hero-image w-100">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="py-5 bg-light" id="produk">
+    <div class="container">
+      <div class="section-header">
+        <h2>Katalog Produk</h2>
+        <p class="subtitle">Pilihan buket terbaik untuk setiap momen</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card product-card">
+            <img src="1.jpg" class="card-img-top" alt="Buket Bunga Custom">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Buket Bunga Custom</h5>
+              <p class="text-muted mb-3">Buket bunga segar untuk momen spesial</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price">Rp 120K</div>
+                <a href="https://wa.me/628125913319?text=Halo%2C%20saya%20mau%20pesan%20Buket%20Bunga%20Custom" target="_blank" class="btn btn-sm btn-primary-modern btn-modern">
+                  Pesan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card product-card">
+            <img src="2.jpg" class="card-img-top" alt="Buket Snack">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Buket Snack Unik</h5>
+              <p class="text-muted mb-3">Kombinasi snack favorit dalam buket</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price">Rp 180K</div>
+                <a href="https://wa.me/628125913319?text=Halo%2C%20saya%20mau%20pesan%20Buket%20Snack" target="_blank" class="btn btn-sm btn-primary-modern btn-modern">
+                  Pesan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card product-card">
+            <img src="3.jpg" class="card-img-top" alt="Buket Money">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Buket Money Kreatif</h5>
+              <p class="text-muted mb-3">Hadiah uang dalam bentuk buket unik</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price">Rp 220K</div>
+                <a href="https://wa.me/628125913319?text=Halo%2C%20saya%20mau%20pesan%20Buket%20Money" target="_blank" class="btn btn-sm btn-primary-modern btn-modern">
+                  Pesan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card product-card">
+            <img src="4.jpg" class="card-img-top" alt="Buket Sederhana">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Buket Sederhana</h5>
+              <p class="text-muted mb-3">Buket minimalis untuk kejutan</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price">Rp 85K</div>
+                <a href="https://wa.me/628125913319?text=Halo%2C%20saya%20mau%20pesan%20Buket%20Sederhana" target="_blank" class="btn btn-sm btn-primary-modern btn-modern">
+                  Pesan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card product-card">
+            <img src="5.jpg" class="card-img-top" alt="Buket Festive">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Buket Snack Festive</h5>
+              <p class="text-muted mb-3">Snack tematik untuk perayaan</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price">Rp 150K</div>
+                <a href="https://wa.me/628125913319?text=Halo%2C%20saya%20mau%20pesan%20Buket%20Festive" target="_blank" class="btn btn-sm btn-primary-modern btn-modern">
+                  Pesan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="card product-card">
+            <img src="6.jpg" class="card-img-top" alt="Custom">
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Custom Lainnya</h5>
+              <p class="text-muted mb-3">Kustomisasi sesuai kebutuhan</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price">Rp 200K</div>
+                <a href="https://wa.me/628125913319?text=Halo%2C%20saya%20mau%20pesan%20Custom" target="_blank" class="btn btn-sm btn-primary-modern btn-modern">
+                  Pesan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us -->
+  <section class="py-5" id="why">
+    <div class="container">
+      <div class="section-header">
+        <h2>Kenapa BROWNY.GIFT?</h2>
+        <p class="subtitle">Keunggulan yang membuat kami berbeda</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-heart-fill"></i>
+            </div>
+            <h5 class="fw-bold">Handmade</h5>
+            <p class="text-muted mb-0">Dibuat dengan cinta dan perhatian detail</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-palette-fill"></i>
+            </div>
+            <h5 class="fw-bold">Custom Design</h5>
+            <p class="text-muted mb-0">Sesuaikan dengan tema dan keinginan</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-lightning-fill"></i>
+            </div>
+            <h5 class="fw-bold">Pesanan Cepat</h5>
+            <p class="text-muted mb-0">Terima pesanan dadakan dengan cepat</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-star-fill"></i>
+            </div>
+            <h5 class="fw-bold">Kualitas Terbaik</h5>
+            <p class="text-muted mb-0">Material premium untuk hasil maksimal</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-5 bg-light" id="testimoni">
+    <div class="container">
+      <div class="section-header">
+        <h2>Testimoni Pelanggan</h2>
+        <p class="subtitle">Apa kata mereka tentang kami</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="testimonial-card">
+            <div class="mb-3">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            <p class="mb-3">"Buket bunganya cantik dan segar, bikin wisuda lebih istimewa!"</p>
+            <div class="fw-bold">Aisha</div>
+            <small class="text-muted">Wisuda, Surabaya</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="testimonial-card">
+            <div class="mb-3">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            <p class="mb-3">"Pesan dadakan, cepat sampai dan packingnya rapi banget."</p>
+            <div class="fw-bold">Rizky</div>
+            <small class="text-muted">Jakarta</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="testimonial-card">
+            <div class="mb-3">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            <p class="mb-3">"Desain custom sesuai request, sangat memuaskan!"</p>
+            <div class="fw-bold">Sari</div>
+            <small class="text-muted">Yogyakarta</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="testimonial-card">
+            <div class="mb-3">
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+              <i class="bi bi-star-fill text-warning"></i>
+            </div>
+            <p class="mb-3">"Buket snacknya unik, temenku suka banget!"</p>
+            <div class="fw-bold">Lina</div>
+            <small class="text-muted">Bandung</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo -->
+  <section class="py-5" id="promo">
+    <div class="container">
+      <div class="promo-box">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <h3 class="fw-bold mb-3">🎉 Promo Spesial Bulan Ini</h3>
+            <p class="mb-2">Diskon <span class="fw-bold" style="color: var(--primary);">10%</span> untuk semua pemesanan dengan kode <span class="badge" style="background: var(--gradient); font-size: 1rem;">BROWNY10</span></p>
+            <p class="text-muted mb-0"><small>Limited edition: koleksi "Rose & Gift" hanya tersedia bulan ini.</small></p>
+          </div>
+          <div class="col-lg-5 text-lg-end">
+            <div class="mb-3">
+              <small class="text-muted d-block mb-2">Sisa waktu promo:</small>
+              <div class="countdown" id="countdown"></div>
+            </div>
+            <a href="https://wa.me/628125913319?text=Halo%2C%20saya%20mau%20pakai%20promo%20BROWNY10" target="_blank" class="btn btn-primary-modern btn-modern">
+              Gunakan Promo <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Order -->
+  <section class="py-5 bg-light" id="cara-order">
+    <div class="container">
+      <div class="section-header">
+        <h2>Cara Order</h2>
+        <p class="subtitle">Mudah dan cepat, hanya 3 langkah</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+              <span class="fw-bold fs-4">1</span>
+            </div>
+            <h5 class="fw-bold mt-3">Pilih Produk</h5>
+            <p class="text-muted mb-0">Browse katalog dan pilih buket favorit Anda</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+              <span class="fw-bold fs-4">2</span>
+            </div>
+            <h5 class="fw-bold mt-3">Chat WhatsApp</h5>
+            <p class="text-muted mb-0">Hubungi kami untuk konfirmasi dan custom</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+              <span class="fw-bold fs-4">3</span>
+            </div>
+            <h5 class="fw-bold mt-3">Terima Pesanan</h5>
+            <p class="text-muted mb-0">Buket Anda akan disiapkan dan dikirim</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <a href="https://wa.me/628125913319?text=Halo%20BROWNY.GIFT%2C%20saya%20siap%20order" target="_blank" class="btn btn-primary-modern btn-modern btn-lg">
+          <i class="bi bi-whatsapp me-2"></i>Mulai Order Sekarang
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h4 class="fw-bold mb-3">BROWNY.GIFT</h4>
+          <p class="mb-3">Buket bunga, snack, dan hadiah unik yang membawa kebahagiaan untuk setiap momen spesial Anda.</p>
+          <div class="d-flex gap-2">
+            <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="bi bi-tiktok"></i>
+            </a>
+            <a href="https://wa.me/628125913319" target="_blank" class="btn btn-outline-light btn-sm rounded-circle" style="width: 40px; height: 40px; padding: 0; display: flex; align-items: center; justify-content: center;">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <h5 class="fw-bold mb-3">Kontak</h5>
+          <p class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i>Balung Lor, Balung-Jember</p>
+          <p class="mb-2"><i class="bi bi-whatsapp me-2"></i>+62 812-5913-319</p>
+          <p class="mb-0"><i class="bi bi-envelope-fill me-2"></i>info@browny.gift</p>
+        </div>
+        <div class="col-lg-4">
+          <h5 class="fw-bold mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#produk">Katalog Produk</a></li>
+            <li class="mb-2"><a href="#why">Kenapa Kami</a></li>
+            <li class="mb-2"><a href="#testimoni">Testimoni</a></li>
+            <li class="mb-2"><a href="#promo">Promo</a></li>
+            <li class="mb-2"><a href="#cara-order">Cara Order</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4 border-secondary">
+      <div class="text-center">
+        <small>© <span id="year"></span> BROWNY.GIFT. Made with <i class="bi bi-heart-fill" style="color: var(--primary);"></i> in Jember</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Countdown Timer
+    function updateCountdown() {
+      const endDate = new Date('2026-02-01T23:59:59');
+      const now = new Date();
+      const diff = endDate - now;
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerHTML = `
+          <div class="countdown-item">
+            <span class="countdown-number">${days}</span>
+            <span class="countdown-label">Hari</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number">${hours}</span>
+            <span class="countdown-label">Jam</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number">${minutes}</span>
+            <span class="countdown-label">Menit</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-number">${seconds}</span>
+            <span class="countdown-label">Detik</span>
+          </div>
+        `;
+      } else {
+        document.getElementById('countdown').innerHTML = '<div class="text-center fw-bold">Promo Berakhir!</div>';
+      }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Smooth scroll for navbar links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const navbarHeight = document.querySelector('.navbar').offsetHeight;
+          const targetPosition = target.offsetTop - navbarHeight;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          // Close mobile menu if open
+          const navbarCollapse = document.querySelector('.navbar-collapse');
+          if (navbarCollapse.classList.contains('show')) {
+            bootstrap.Collapse.getInstance(navbarCollapse).hide();
+          }
+        }
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards and sections
+    document.querySelectorAll('.feature-card, .product-card, .testimonial-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
